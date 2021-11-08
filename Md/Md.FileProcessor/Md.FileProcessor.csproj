@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="build\markdown\**" />
+    <EmbeddedResource Remove="build\markdown\**" />
+    <None Remove="build\markdown\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotLiquid" Version="2.2.580" />
+    <PackageReference Include="Markdig" Version="0.26.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
