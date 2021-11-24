@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Md.FileProcessor\Md.FileProcessor.csproj" />
+    <ProjectReference Include="..\Md.Gfm\Md.Gfm.csproj" />
   </ItemGroup>
 
 </Project>

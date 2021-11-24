@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Md.Gfm.Parser;
+using System;
 
 namespace Md.Console
 {
@@ -6,7 +7,10 @@ namespace Md.Console
     {
         static void Main(string[] args)
         {
-            new Md.FileProcessor.FileProcessor().Process();
+            var markdown = "######### Heading text";
+            var parser = new MarkdownParser();
+            var res = parser.Parse(markdown);
+
         }
     }
 }

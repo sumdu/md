@@ -28,10 +28,10 @@ namespace Md.FileProcessor
             
             var templateName = "templat123";
             var templatePath = $"{templateBasePath}/{templateName}.html.liquid";
-            var templateString = File.ReadAllText(templatePath);
+            //var templateString = File.ReadAllText(templatePath);
 
             // for testing purposes
-            templateString = "<html> {{article_content}} </html>";
+            var templateString = "<html> {{article_content}} </html>";
 
             var template = Template.Parse(templateString);
             template.MakeThreadSafe();
@@ -51,7 +51,7 @@ namespace Md.FileProcessor
             var context = new DotLiquid.Context(
                     environments: environments,
                     outerScope: new Hash(),
-                    registers: registers,
+                    registers: registers, // availble in custom_tag.Render()
                     errorsOutputMode: ErrorsOutputMode.Rethrow,
                     maxIterations: 0,
                     formatProvider: CultureInfo.InvariantCulture,
