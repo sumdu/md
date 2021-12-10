@@ -34,8 +34,12 @@ namespace Md2.Common
 
             new ZipService().Unzip(downloadFileName, folder);
             File.Delete(downloadFileName);
-            
-            Directory.Move(unzipFolderName, Path.Combine(folder, subFolder));
+
+            var finalFolderName = Path.Combine(folder, subFolder);
+            if (Directory.Exists(finalFolderName))
+                Directory.Delete(finalFolderName, true);
+
+            Directory.Move(unzipFolderName, finalFolderName);
         }
     }
 }
