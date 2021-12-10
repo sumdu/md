@@ -1,5 +1,7 @@
 ﻿using Markdig;
+using Md2.Common;
 using Md2.Dal;
+using Md2.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +15,22 @@ namespace Md2
         {
             //var ast = Markdown.Parse("Click [here](other-file.md) and another one [yo](yo.html)", true);
             //var res = new MarkdownDocumentVisitor().Visit(ast);
+
+            var repoCollection = new DocRepoInfoCollection();
+
+            repoCollection.LocalGitDirRoot = "c:/temp/md-workdir";
+            repoCollection.Add(new DocRepoInfo() { 
+                AccountName = "sumdu",
+                Branch = "master",
+                RepoName = "md",
+                RelativePathToRepoRoot = "demo-md-files"
+            });
+
+            var gitService = new GitService();
+            foreach (var repo in repoCollection)
+            {
+                gitService.DownloadRepo(repo.DownloadUrl, repoCollection.LocalGitDirRoot, repo.RepoName);
+            }
 
             // re-build all links for the repo
             using (var db = new MdDbContext())
@@ -48,9 +66,6 @@ namespace Md2
                 //db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
                 //db.SaveChanges();
             }
-
-            
-            
         }
     }
 }
